@@ -50,22 +50,7 @@
 - pip (gestionnaire de packages Python)
 
 
-
-
-#### QR Code avec dégradé
-```python
-from qrCode import creer_degraded_qr
-
-
-
-## 📁 Structure du Projet
-
-```
-Generator-qrcode/
-├── 📄 qrCode.py              # Script principal
-
-
-## 🎯 Feuille de Route
+##  Feuille de Route
 
 - [x] **Phase 1** : QR codes basiques 
 - [x] **Phase 2** : Personnalisation couleurs 
@@ -75,7 +60,7 @@ Generator-qrcode/
 - [ ] **Phase 6** : Templates prédéfinis
 - [ ] **Phase 7** : API REST
 
-## 🤝 Contribution
+## Contribution
 
 Les contributions sont les bienvenues ! 
 
@@ -90,7 +75,7 @@ Les contributions sont les bienvenues !
 
 **Fleur-Accacia** - *Développeuse principale*
 - GitHub: [@FleurAccacia](https://github.com/FleurAccacia)
-- Email: graciajulienne@gmail.com
+
 
 
 ⭐ **N'oubliez pas de mettre une étoile si ce projet vous a été utile !**

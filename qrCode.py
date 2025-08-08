@@ -439,48 +439,6 @@ def obtenir_couleur_fond():
     else:
         print("Choix invalide, utilisation du blanc par défaut.")
         return "white"
-    """
-    Obtient la couleur de fond choisie par l'utilisateur
-    """
-    print("\n🎨 Propositions de couleurs de fond :")
-    print("1. Blanc (white)")
-    print("2. Gris clair (lightgray)")
-    print("3. Jaune clair (lightyellow)")
-    print("4. Bleu clair (lightcyan)")
-    print("5. Rose clair (lightpink)")
-    print("6. Vert clair (lightgreen)")
-    print("7. Personnalisée")
-    
-    choix = input("\nChoisissez la couleur de fond (1-7) : ")
-    
-    couleurs_fond = {
-        "1": "white",
-        "2": "lightgray",
-        "3": "lightyellow", 
-        "4": "lightcyan",
-        "5": "lightpink",
-        "6": "lightgreen"
-    }
-    
-    if choix in couleurs_fond:
-        return couleurs_fond[choix]
-    elif choix == "7":
-        while True:
-            couleur_perso = input("Entrez votre couleur de fond (ex: #FFFF00, yellow) : ").strip()
-            if not couleur_perso:
-                return "white"
-            
-            couleur_validee = valider_couleur(couleur_perso)
-            if couleur_validee:
-                return couleur_validee
-            else:
-                print("❌ Couleur invalide ! Exemples valides : yellow, white, #FFFF00")
-                retry = input("Voulez-vous réessayer ? (o/n) : ").lower()
-                if retry != 'o':
-                    return "white"
-    else:
-        print("Choix invalide, utilisation du blanc par défaut.")
-        return "white"
 
 def demander_logo():
     """
@@ -566,6 +524,10 @@ def main():
         # Choisir couleurs
         print("\n🎨 ÉTAPE 3: Choix des couleurs")
         couleur_qr = obtenir_couleur_utilisateur("le QR code")
+        
+        # DEBUG: Afficher ce qui a été reçu
+        print(f"🔍 DEBUG: Couleur reçue = {couleur_qr}, type = {type(couleur_qr)}")
+        
         couleur_fond = obtenir_couleur_fond()
         
         # Demander logo
@@ -576,10 +538,12 @@ def main():
             chemin_logo = obtenir_chemin_logo()
             if isinstance(couleur_qr, list):
                 # Dégradé avec logo
+                print(f"🌈 Création d'un QR avec dégradé {couleur_qr[0]} → {couleur_qr[1]} et logo")
                 generer_qr_code_avec_logo_et_degrade(donnees, nom_fichier, chemin_logo,
                                                    couleur_qr[0], couleur_qr[1], couleur_fond, 0.25)
             else:
                 # Couleur unique avec logo
+                print(f"🎨 Création d'un QR avec couleur {couleur_qr} et logo")
                 generer_qr_code_avec_logo(donnees, nom_fichier, chemin_logo, 
                                         couleur_qr, couleur_fond, 0.25)
         elif choix_logo == "2":
@@ -588,19 +552,23 @@ def main():
             logo = creer_logo_simple("logo_temp.png", couleur_logo, 80)
             if isinstance(couleur_qr, list):
                 # Dégradé avec logo simple
+                print(f"🌈 Création d'un QR avec dégradé {couleur_qr[0]} → {couleur_qr[1]} et logo simple")
                 generer_qr_code_avec_logo_et_degrade(donnees, nom_fichier, logo,
                                                    couleur_qr[0], couleur_qr[1], couleur_fond, 0.25)
             else:
                 # Couleur unique avec logo simple
+                print(f"🎨 Création d'un QR avec couleur {couleur_qr} et logo simple")
                 generer_qr_code_avec_logo(donnees, nom_fichier, logo, 
                                         couleur_qr, couleur_fond, 0.25)
         else:
             # Sans logo - vérifier si c'est un dégradé
             if isinstance(couleur_qr, list):
                 # Dégradé avec deux couleurs
+                print(f"🌈 Création d'un QR avec dégradé {couleur_qr[0]} → {couleur_qr[1]} sans logo")
                 creer_degraded_qr(donnees, nom_fichier, couleur_qr[0], couleur_qr[1], couleur_fond)
             else:
                 # Couleur unique
+                print(f"🎨 Création d'un QR avec couleur {couleur_qr} sans logo")
                 generer_qr_code_personnalise(donnees, nom_fichier, couleur_qr, couleur_fond)
     
     else:
